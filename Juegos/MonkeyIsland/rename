@@ -1,0 +1,3 @@
+mv Guybrush.stl     Guybrush_0.8.stl
+mv Guybrush_1.1.stl Guybrush_0.9.stl
+mv Guybrush_1.2.stl Guybrush_1.0.stl
