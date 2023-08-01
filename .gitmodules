@@ -1,0 +1,3 @@
+[submodule "threads-scad"]
+	path = threads-scad
+	url = git@github.com:rcolyer/threads-scad.git
