@@ -50,5 +50,5 @@ module Agujeros(diametro, diametro_agujero){
 
 
 
-Rosa(diametro=40, largo=15, diametro_agujero=1.5);
+Rosa(diametro=20, largo=20, diametro_agujero=1.5);
 
