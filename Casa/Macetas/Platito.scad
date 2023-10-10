@@ -11,12 +11,12 @@ module Platito(DiametroMayor=DiametroArriba, DiametroMenor=DiametroAbajo, Alto=A
 
 difference(){
     union(){
-        cylinder(h=Alto, r2=DiametroMayor/2, r1=DiametroMenor/2);
+        cylinder(h=Alto, r2=DiametroMayor/2+Espesor/2, r1=DiametroMenor/2+Espesor/2);
         translate([0,0,Alto-(Aro+0.01)])cylinder(h=3, r=DiametroMayor/2+Aro);
     }        
-    translate([0,0,Espesor]) cylinder(h=Alto, r1=DiametroMenor/2-Espesor/2, r2=DiametroMayor/2-Espesor/2);
+    translate([0,0,Espesor]) cylinder(h=Alto, r1=DiametroMenor/2, r2=DiametroMayor/2);
     };
 }
 
-Platito();
+Platito(DiametroMayor=23, DiametroMenor=23, Alto=20, Espesor=2);
 
