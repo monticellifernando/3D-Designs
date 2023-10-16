@@ -77,11 +77,11 @@ module Maceta(){
 //SacarInterior();
 //
 //
-  color([0.8,0.9,1], alpha=0.7)
-  Maceta();
-// // 
- color([0.8,1,0.9], alpha=0.7)
- Rejilla();
+//   color([0.8,0.9,1], alpha=0.7)
+//   Maceta();
+// // // 
+//  color([0.8,1,0.9], alpha=0.7)
+//  Rejilla();
 
 //color([1,0.8,0.9], alpha=0.7)
 //    Base();
