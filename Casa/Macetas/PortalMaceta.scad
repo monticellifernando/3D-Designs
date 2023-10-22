@@ -3,50 +3,52 @@ $fn=50;
 NroDeRayos=10;
 
 
-module Cubo(){
+module Cubo(Tamano=100){
     rotate([180,0,0])
-        scale(4.2) translate([-12.75,-12.75,-25])
+        scale(4.2*Tamano/100) translate([-12.75,-12.75,-25])
         //import("Extra_Printable_Companion_Cube.STL", convexity=6);
         import("Weighted_Companion_Cube_33138.stl", convexity=6);
 }
 
-module CuboHueco(AgujeroInterior=86){
+module CuboHueco(Tamano=100,AjusteInterior=0){
+    
     difference(){
-        Cubo();
-        SacarInterior(AgujeroInterior);
+        Cubo(Tamano);
+        SacarInterior(Tamano,AjusteInterior);
 
     }
 }
 
-module Base(AgujeroInterior=86){
+module Base(Tamano=100, AjusteInterior=-1){
     difference(){
-        CuboHueco(AgujeroInterior);
-        SacarCilindros();
+        CuboHueco(Tamano,AjusteInterior);
+        SacarCilindros(Tamano);
     }
 }
 
-module SacarInterior(AgujeroInterior=86){
+module SacarInterior(Tamano,AjusteInterior){
+    AgujeroInterior=Tamano*86/100-AjusteInterior;
     rotate([180,0,0])
         union(){
             // Sacar interior y sobrantes
-            translate([0,0,-45])
-                cube([AgujeroInterior,AgujeroInterior,100], center=true);
-            translate([0,0,-12])
-                cube(110, center=true);
+            translate([0,0,-45*Tamano/100])
+                cube([AgujeroInterior,AgujeroInterior,Tamano], center=true);
+            translate([0,0,-12*Tamano/100])
+                cube(Tamano*1.1, center=true);
 
 
         }
 }
 
 
-module Rejilla(){
+module Rejilla(Tamano=100){
 
     difference(){
-        translate([0,0,90]) cube([81.5,81.5,2],center=true);
+        translate([0,0,0.9*Tamano]) cube([0.82*Tamano-0.5,0.82*Tamano-0.5,2],center=true);
         for (i=[0:NroDeRayos]){
-            for (j=[0, 15, 22.5, 30]){
+            for (j=[0, 0.15, 0.22, 0.30]){
                 rotate([0,0,360*i/NroDeRayos]) 
-                    translate([j,0,90]) 
+                    translate([Tamano*j,0,Tamano*.9]) 
                     cylinder(r=2, h=50,center=true);
             }
         }
@@ -54,19 +56,19 @@ module Rejilla(){
 }
 
 
-module SacarCilindros(){
-    translate([0,0,52.5])    rotate([0,90,0]) cylinder(r=34,h=110,center=true);
-    translate([0,0,52.5])    rotate([90,0,0]) cylinder(r=34,h=110,center=true);
+module SacarCilindros(Tamano=100){
+    translate([0,0,52.5*Tamano/100])    rotate([0,90,0]) cylinder(r=Tamano*34/100,h=Tamano*1.1,center=true);
+    translate([0,0,52.5*Tamano/100])    rotate([90,0,0]) cylinder(r=Tamano*34/100,h=Tamano*1.1,center=true);
 }
 
-module Maceta(){
+module Maceta(Tamano=100){
     difference(){
-        Cubo();
-        translate([0,0,43])
-            cube([83,83,100], center=true);
-        Base(85);
-        translate([0,0,46])
-            cube([80,80,100], center=true);
+        Cubo(Tamano);
+        translate([0,0,Tamano*.43])
+            cube([Tamano*.83-0.5,Tamano*.83-0.5,Tamano], center=true);
+        Base(Tamano,0);
+        translate([0,0,0.46*Tamano])
+            cube([Tamano*.8,Tamano*.8,Tamano], center=true);
     }
 
     //    translate([0,0,-80]) cube([
@@ -77,12 +79,12 @@ module Maceta(){
 //SacarInterior();
 //
 //
-//   color([0.8,0.9,1], alpha=0.7)
-//   Maceta();
-// // // 
-//  color([0.8,1,0.9], alpha=0.7)
-//  Rejilla();
+// color([0.8,0.2,0], alpha=0.7)
+//     Maceta(50);
+    // // 
+// color([0.8,1,0.9], alpha=0.7)
+//     Rejilla(50);
 
-//color([1,0.8,0.9], alpha=0.7)
-//    Base();
+//    color([0,0.8,0.9], alpha=0.9)
+//       Base(50);
 
