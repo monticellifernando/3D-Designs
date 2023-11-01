@@ -22,7 +22,7 @@ module Rosa(diametro=20, largo=20, diametro_agujero=1){
         // Los agujeros
         translate([0,0,-1]) Agujeros(diametro, diametro_agujero);
     }
-    translate([0,0,largo]) Cono(5,31,15,-2);
+    translate([0,0,largo]) Cono(5,31,20,-1.5);
 
     // Ahora la rosca!
     translate([0,0,largo])
