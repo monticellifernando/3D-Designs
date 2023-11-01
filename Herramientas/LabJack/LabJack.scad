@@ -15,7 +15,7 @@ Size=80;
 Depth=2;
 Height=15;
 HoleRadious=4;
-SmallHoleRadious=2;
+SmallHoleRadious=2.5;
 Separation=70;
 
 
@@ -47,11 +47,11 @@ module BaseHolderLeft(){
                 translate([-1*((Size-4*Depth)-Height)/2,0,0])
                     cylinder(h=Depth+1, r=HoleRadious,center=true);
 
-                translate([0.5*((Size-4*Depth)-Height)/2,0,0])
+                translate([0.25*((Size-4*Depth)-Height)/2,0,0])
                     cylinder(h=Depth+1, r=HoleRadious,center=true);
 
-                translate([-0.25*((Size-4*Depth)-Height)/2,0,0])
-                    cube([(Size+4*Depth)/2,HoleRadious*2,Depth+1],center=true);
+                translate([-0.35*((Size-4*Depth)-Height)/2,0,0])
+                    cube([0.82*(Size+4*Depth)/2,HoleRadious*2,Depth+1],center=true);
 
 
                 //        cube([Height,Size-Height-1, Depth], center=true);
@@ -95,8 +95,8 @@ module Sides(AdditionalLength=0){
         cylinder(h=Depth+1, r=SmallHoleRadious,center=true);
     }
     difference(){
-        translate([-((Size-4*Depth)-Height)/2,0,1.25*Depth+AdditionalLength/2])
-            cylinder(h=2.5*Depth+AdditionalLength, r=HoleRadious-0.5,center=true);
+        translate([-((Size-4*Depth)-Height)/2,0,1.1*Depth+AdditionalLength/2])
+            cylinder(h=1.2*Depth+AdditionalLength, r=HoleRadious-0.5,center=true);
         translate([-((Size-4*Depth)-Height)/2,0,0])
             cylinder(h=10*Depth, r=SmallHoleRadious,center=true);
     }
@@ -117,8 +117,8 @@ module SidesMiddlePlug(){
 
         Sides(Depth);
             difference(){
-                translate([0,0,1.25*Depth])
-                    cylinder(h=2.5*Depth, r=HoleRadious-0.5,center=true);
+                translate([0,0,1.1*Depth])
+                    cylinder(h=1.2*Depth, r=HoleRadious-0.5,center=true);
                 translate([0,0,0])
                     cylinder(h=10*Depth, r=SmallHoleRadious,center=true);
             }
@@ -150,19 +150,26 @@ module Tubes(){
     }
 }
 
-// // for (i=[-50,50]){
-// //     translate([0,i,Height/2]) Base();
-// // }
-// for ( i = [ 1:4] ) {
-//     translate([80,i*15 - 45,Depth/2]) SidesMiddlePlug();
+module ShowAll(){
+// for (i=[-50,50]){
+//     translate([0,i,Height/2]) Base();
 // }
-// 
-// translate([-Separation/2+Depth,0,Height]) BaseHolderLeft();
-// //for (i = [-10,10]){
-// //    translate([i,0,Size/2]) tubes();
-// //}
-// SolidBase();
-// 
-// translate([90,40,0]) Pituto();
-// //translate([90,-50,0]) HoleTuerca();
-// translate([90,-50,0]) Tubes();
+for ( i = [ 1:2] ) {
+    translate([80,i*15 - 45,Depth/2]) SidesMiddlePlug();
+}
+for ( i = [ 3:4] ) {
+    translate([80,i*15 - 45,Depth/2]) SidesMiddleHole();
+}
+
+translate([-Separation/2+Depth,0,Height]) BaseHolderLeft();
+//for (i = [-10,10]){
+//    translate([i,0,Size/2]) tubes();
+//}
+SolidBase();
+
+translate([90,40,0]) Pituto();
+//translate([90,-50,0]) HoleTuerca();
+translate([90,-50,0]) Tubes();
+}
+
+//ShowAll();
