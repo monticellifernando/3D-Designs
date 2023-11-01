@@ -150,19 +150,19 @@ module Tubes(){
     }
 }
 
-// for (i=[-50,50]){
-//     translate([0,i,Height/2]) Base();
+// // for (i=[-50,50]){
+// //     translate([0,i,Height/2]) Base();
+// // }
+// for ( i = [ 1:4] ) {
+//     translate([80,i*15 - 45,Depth/2]) SidesMiddlePlug();
 // }
-for ( i = [ 1:4] ) {
-    translate([80,i*15 - 45,Depth/2]) SidesMiddlePlug();
-}
-
-translate([-Separation/2+Depth,0,Height]) BaseHolderLeft();
-//for (i = [-10,10]){
-//    translate([i,0,Size/2]) tubes();
-//}
-SolidBase();
-
-translate([90,40,0]) Pituto();
-//translate([90,-50,0]) HoleTuerca();
-translate([90,-50,0]) Tubes();
+// 
+// translate([-Separation/2+Depth,0,Height]) BaseHolderLeft();
+// //for (i = [-10,10]){
+// //    translate([i,0,Size/2]) tubes();
+// //}
+// SolidBase();
+// 
+// translate([90,40,0]) Pituto();
+// //translate([90,-50,0]) HoleTuerca();
+// translate([90,-50,0]) Tubes();
