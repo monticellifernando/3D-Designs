@@ -2407,6 +2407,20 @@ solid OpenSCAD_Model
       vertex 0 -32.5 -1
     endloop
   endfacet
+  facet normal 0.992112 0.125353 0
+    outer loop
+      vertex -3.92915 -29.2495 1
+      vertex -3.99211 -28.7512 -1
+      vertex -3.99211 -28.7512 1
+    endloop
+  endfacet
+  facet normal 0.992112 0.125353 0
+    outer loop
+      vertex -3.99211 -28.7512 -1
+      vertex -3.92915 -29.2495 1
+      vertex -3.92915 -29.2495 -1
+    endloop
+  endfacet
   facet normal -0.728993 0.684521 0
     outer loop
       vertex 2.73819 -31.4159 -1
@@ -2503,20 +2517,6 @@ solid OpenSCAD_Model
       vertex -3.61931 -30.2031 -1
       vertex -3.37731 -30.6433 1
       vertex -3.37731 -30.6433 -1
-    endloop
-  endfacet
-  facet normal 0.992112 0.125353 0
-    outer loop
-      vertex -3.92915 -29.2495 1
-      vertex -3.99211 -28.7512 -1
-      vertex -3.99211 -28.7512 1
-    endloop
-  endfacet
-  facet normal 0.992112 0.125353 0
-    outer loop
-      vertex -3.99211 -28.7512 -1
-      vertex -3.92915 -29.2495 1
-      vertex -3.92915 -29.2495 -1
     endloop
   endfacet
   facet normal 0.308968 0.951073 -0
@@ -3039,20 +3039,6 @@ solid OpenSCAD_Model
   endfacet
   facet normal 0 -1 0
     outer loop
-      vertex 3.88024 8.065 -1
-      vertex 4 8.065 1
-      vertex 3.88024 8.065 1
-    endloop
-  endfacet
-  facet normal 0 -1 -0
-    outer loop
-      vertex 4 8.065 1
-      vertex 3.88024 8.065 -1
-      vertex 4 8.065 -1
-    endloop
-  endfacet
-  facet normal 0 -1 0
-    outer loop
       vertex -4 8.065 -1
       vertex -3.88024 8.065 1
       vertex -4 8.065 1
@@ -3063,6 +3049,20 @@ solid OpenSCAD_Model
       vertex -3.88024 8.065 1
       vertex -4 8.065 -1
       vertex -3.88024 8.065 -1
+    endloop
+  endfacet
+  facet normal 0 -1 0
+    outer loop
+      vertex 3.88024 8.065 -1
+      vertex 4 8.065 1
+      vertex 3.88024 8.065 1
+    endloop
+  endfacet
+  facet normal 0 -1 -0
+    outer loop
+      vertex 4 8.065 1
+      vertex 3.88024 8.065 -1
+      vertex 4 8.065 -1
     endloop
   endfacet
   facet normal 0 1 -0

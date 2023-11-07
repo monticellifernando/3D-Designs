@@ -64,14 +64,53 @@ module BaseHolderRight(){
 }
 
 
-module Pituto(){
+module Pituto(ExtraLength=0, InternalRadious=SmallHoleRadious){
     difference(){
         union(){
-            cylinder(h=Depth+1, r=HoleRadious,center=true);
-            translate([0,0,(-Depth-2)/2]) cylinder(h=Depth,r=Height/2,center=true);
+            cylinder(h=Depth+1+ExtraLength, r=HoleRadious-0.5,center=true);
+            translate([0,0,(-Depth-2-ExtraLength)/2]) cylinder(h=Depth,r=Height/2,center=true);
         }
-        cylinder(h=10*Depth+2, r=SmallHoleRadious,center=true);
+        cylinder(h=10*Depth+2, r=InternalRadious,center=true);
     }
+}
+
+module PitutoLargo(){
+    Pituto(3);
+}
+
+module PitutoAngosto(){
+    Pituto(0,SmallHoleRadious-0.3);
+}
+
+
+module Cup(){
+    translate([0,0,(-Depth-2)/2]) cylinder(h=Depth,r=Height/2,center=true);
+    cylinder(h=2*Depth+2, r=SmallHoleRadious-0.3,center=true);
+}
+
+module SmallCup(){
+    difference(){
+        Cup();
+        for (i = [-1,1]){
+            translate([i*(SmallHoleRadious+Height/2),0,0]) cube([Height,Height,Height], center=true);
+        }
+    }
+}
+
+
+module Perilla(){
+    difference(){
+        union(){
+            Pituto();
+            translate([0,0,-Depth-5]) cylinder(h=10,r=20,$fn=8,center=true);
+            translate([0,0,-Depth-5]) rotate([0,0,360/16]) cylinder(h=10,r=20,$fn=8,center=true);
+        }
+            cylinder(h=10*Depth+2, r=SmallHoleRadious,center=true);
+            translate([0,0,-Depth-8.5])  cylinder(h=4,r=4.75,$fn=6,center=true);
+
+    }
+
+
 }
 
 
@@ -126,13 +165,13 @@ module SidesMiddlePlug(){
 
 }
 
-module HoleTuerca(){
+module HoleTuerca(R=4.15, h=3.6){
 
 
-    m_R = 3;
-    m_h = 3;
+    m_R = R;
+    m_h = h;
 
-        cylinder(h=3, r=3.5/3*m_R,center=true, $fn=6);
+        cylinder(h=m_h, r=3.5/3*m_R,center=true, $fn=6);
         translate([1.25*3.5/3*m_R,0,0]) cube([8,2*m_R,m_h], center=true);
         cylinder(h=15, r=SmallHoleRadious,center=true);
 }
@@ -140,36 +179,15 @@ module HoleTuerca(){
 module Tubes(){
 
     difference(){
-        cube([Separation-4*Depth-2,2*HoleRadious,2*HoleRadious],center=true);
-        rotate([0,90,0])
-        cylinder(h=Size+1, r=SmallHoleRadious,center=true);
+        cube([Separation-4*Depth-2,2.75*HoleRadious,2.75*HoleRadious],center=true);
         rotate([90,90,0]) HoleTuerca();
         for (i = [-1, 1]){
-            translate([i*(Separation-4*Depth-2-15)/2,0,0]) rotate([0,90,0]) HoleTuerca();
+            translate([i*(Separation-4*Depth-2-15)/2,0,0]) 
+                union(){
+                rotate([0,90,0]) HoleTuerca();
+                rotate([0,90,0]) cylinder(h=Size/2.4, r=SmallHoleRadious,center=true);
+                }
         }
     }
 }
 
-module ShowAll(){
-// for (i=[-50,50]){
-//     translate([0,i,Height/2]) Base();
-// }
-for ( i = [ 1:2] ) {
-    translate([80,i*15 - 45,Depth/2]) SidesMiddlePlug();
-}
-for ( i = [ 3:4] ) {
-    translate([80,i*15 - 45,Depth/2]) SidesMiddleHole();
-}
-
-translate([-Separation/2+Depth,0,Height]) BaseHolderLeft();
-//for (i = [-10,10]){
-//    translate([i,0,Size/2]) tubes();
-//}
-SolidBase();
-
-translate([90,40,0]) Pituto();
-//translate([90,-50,0]) HoleTuerca();
-translate([90,-50,0]) Tubes();
-}
-
-//ShowAll();
