@@ -29,5 +29,7 @@ translate([90,-50,0]) Tubes();
 //ShowAll();
 //color(alpha=0.7)
 //Tubes();
-PitutoLargo();
+//Cone();
+//PitutoLargo();
 
+SolidBase();

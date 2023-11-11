@@ -15,14 +15,14 @@ Size=80;
 Depth=2;
 Height=15;
 HoleRadious=4;
-SmallHoleRadious=2.5;
+SmallHoleRadious=2.1;
 Separation=70;
 
 
 module SolidBase(){
     difference(){
         cube([Size,Size,2*Depth],center=true);
-        translate([0,0,Depth])cube([Separation,Size-Height/2,2*Depth],center=true);
+        translate([0,0,Depth])cube([2*Separation,Size-Height/2,2*Depth],center=true);
 
         translate([5,-20,-1])linear_extrude(height = 2) {
               rotate([0,0,90])
@@ -176,7 +176,23 @@ module HoleTuerca(R=4.15, h=3.6){
         cylinder(h=15, r=SmallHoleRadious,center=true);
 }
 
+module Cone(){
+    Radious = 2.75*HoleRadious/2;
+
+    difference(){
+        cylinder(h=Radious+Depth, r1=Radious, r2=Depth, center=true);
+        cylinder(h=Radious+Depth+1, r=SmallHoleRadious, center=true);
+
+    }
+
+}
+
 module Tubes(){
+
+    Translation=(2.75*HoleRadious/2)+(2.75*HoleRadious/2+Depth)/2-0.01;
+
+    translate([0,Translation,0])
+    rotate([-90,0]) Cone();
 
     difference(){
         cube([Separation-4*Depth-2,2.75*HoleRadious,2.75*HoleRadious],center=true);
