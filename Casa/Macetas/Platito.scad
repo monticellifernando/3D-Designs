@@ -3,7 +3,7 @@ $fn=75;
 DiametroArriba=110; // Boca del plato en mm
 DiametroAbajo=95;   // Base del plato en mm
 Altura=20;          // Altura del plato en mm
-Espesor=1;          // Espesor de las paredes del plato en mm
+Espesor=2;          // Espesor de las paredes del plato en mm
 Aro=2;              // Tamaño del aro del plato en mm
 
 
@@ -18,5 +18,5 @@ difference(){
     };
 }
 
-Platito(DiametroMayor=23, DiametroMenor=23, Alto=20, Espesor=2);
+Platito(DiametroMayor=DiametroArriba, DiametroMenor=DiametroAbajo, Alto=Altura, Espesor=Espesor);
 
