@@ -26,7 +26,7 @@ module Rosa(diametro=20, largo=20, diametro_agujero=1){
 
     // Ahora la rosca!
     translate([0,0,largo])
-    ScrewHole(outer_diam = 28, height=15, pitch=2.5,  tooth_angle=45)
+    ScrewHole(outer_diam = 28, height=15, pitch=3,  tooth_angle=45)
         cylinder(h=15  ,r=15.5);
     
 
