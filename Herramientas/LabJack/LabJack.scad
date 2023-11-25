@@ -16,11 +16,13 @@ BaseDepth=2;
 Depth=7.5;
 Height=15;
 HoleRadious=4;
+HoleRadiousMargin=0.2;
 SmallHoleRadious=2.1;
 //Separation=70;
 Separation=Size-2*Depth;
 
 SideLength = Size-2*Depth;
+
 
 module SolidBase(){
     difference(){
@@ -68,8 +70,8 @@ module BaseHolderHole(){
     //rotate([0,0,-90])
     {
 
-        translate([(Height-Depth)/2,0,-Height/2-Depth/2+0.1]) rotate([0,0,90]) 
-            cube([Height,Height,Depth],center=true);
+//         translate([(Height-Depth)/2,0,-Height/2-Depth/2+0.1]) rotate([0,0,90]) 
+//             cube([Height,Height,Depth],center=true);
         rotate([90,0,90]) 
             difference(){
                 cube([Height,Height+BaseDepth,Depth],center=true);
@@ -93,8 +95,8 @@ module BaseHolderWide(){
     //rotate([0,-90,0])
     {
 
-        translate([(Height-Depth)/2,0,-Height/2-Depth/2+0.1]) rotate([0,0,90]) 
-            cube([0.75*Size-4*BaseDepth-0.2,Height,Depth],center=true);
+       //  translate([(Height-Depth)/2,0,-Height/2-Depth/2+0.1]) rotate([0,0,90]) 
+       //      cube([0.75*Size-4*BaseDepth-0.2,Height,Depth],center=true);
         rotate([90,0,90]) 
             difference(){
                 cube([0.75*Size-4*BaseDepth-0.2,Height+BaseDepth,Depth],center=true);
@@ -124,7 +126,7 @@ module BaseHolderRight(){
 module Pituto(ExtraLength=0, InternalRadious=SmallHoleRadious){
     difference(){
         union(){
-            cylinder(h=Depth+0.4+ExtraLength, r=HoleRadious-0.5,center=true);
+            cylinder(h=Depth+0.4+ExtraLength, r=HoleRadious-HoleRadiousMargin,center=true);
             translate([0,0,(-Depth-2-ExtraLength)/2]) cylinder(h=BaseDepth,r=Height/2,center=true);
         }
         cylinder(h=10*Depth+2, r=InternalRadious,center=true);
@@ -193,7 +195,7 @@ module Sides(AdditionalLength=0){
     }
     difference(){
         translate([-SideLength/2,0,1.1*Depth+AdditionalLength/2])
-            cylinder(h=1.2*Depth+AdditionalLength, r=HoleRadious-0.5,center=true);
+            cylinder(h=1.2*Depth+AdditionalLength, r=HoleRadious-HoleRadiousMargin,center=true);
         translate([-SideLength/2,0,0])
             cylinder(h=10*Depth, r=SmallHoleRadious,center=true);
     }
@@ -215,7 +217,7 @@ module SidesMiddlePlug(){
         Sides(Depth);
             difference(){
                 translate([0,0,Depth-0.1])
-                    cylinder(h=Depth, r=HoleRadious-0.5,center=true);
+                    cylinder(h=Depth, r=HoleRadious-HoleRadiousMargin,center=true);
                 translate([0,0,0])
                     cylinder(h=10*Depth, r=SmallHoleRadious,center=true);
             }
@@ -274,3 +276,27 @@ module Tubes(){
     }
 }
 
+
+module BaseComplete(DisplaceWide=0, DisplaceHole=0){
+
+    Width=0.75*Size-4*BaseDepth-0.2;
+    SolidBase();
+    for (i=[-1,1]){
+        translate([i*(-Size/2+Depth/2+DisplaceWide),(Width-Size)/2,Height/2+BaseDepth/2-0.1])
+            rotate([0,0,90*(-i+1)])
+            BaseHolderWide();
+
+        translate([-i*(-Size/2+Depth/2+DisplaceHole),-(Height-Size)/2,Height/2+BaseDepth/2-0.1])
+            rotate([0,0,90*(i+1)])
+            BaseHolderHole();
+    }
+
+
+}
+
+module BaseUp(){
+    BaseComplete(3*Depth,2*Depth);
+}
+module BaseDown(){
+    BaseComplete(0,Depth);
+}
