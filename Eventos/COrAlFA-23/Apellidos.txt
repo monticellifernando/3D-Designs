@@ -64,3 +64,7 @@ Montani
 Cruz
 Zúñiga
 Brusasco
+Torres
+Miceli
+Lazarte
+Castaño
