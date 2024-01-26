@@ -4,7 +4,7 @@ use<../../threads-scad/threads.scad>
 
 module Cono(largo, diametro1, diametro2, desplazamiento=1){
         difference(){
-            cylinder(h=largo,r1=diametro1/2, r2=diametro2/2);
+            cylinder(h=largo,r1=diametro1/2+1, r2=diametro2/2+1);
             translate([0,0,desplazamiento]) cylinder(h=largo+2*abs(desplazamiento),r1=diametro1/2-2*abs(desplazamiento), r2=diametro2/2-2*abs(desplazamiento));
         }
 }
@@ -27,7 +27,7 @@ module Rosa(diametro=20, largo=20, diametro_agujero=1){
     // Ahora la rosca!
     translate([0,0,largo])
     ScrewHole(outer_diam = 28, height=15, pitch=3,  tooth_angle=45)
-        cylinder(h=15  ,r=15.5);
+        cylinder(h=15  ,r=16.5);
     
 
 
