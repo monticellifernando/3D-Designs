@@ -2,6 +2,7 @@ $fn=50;
 
 NroDeRayos=10;
 
+EspesorParedes = 2;
 
 module Cubo(Tamano=100){
 //    rotate([180,0,0])
@@ -10,6 +11,9 @@ module Cubo(Tamano=100){
         //import("Extra_Printable_Companion_Cube.STL", convexity=6);
         scale(Tamano/16)
         import("question_basic.stl", convexity=6);
+        TamanoCubo = Tamano*0.91;
+        translate([0,0,TamanoCubo/2])
+        cube([TamanoCubo,TamanoCubo,TamanoCubo*0.9275], center=true);
 }
 
 module CuboHueco(Tamano=100,AjusteInterior=0){
@@ -21,17 +25,18 @@ module CuboHueco(Tamano=100,AjusteInterior=0){
     }
 }
 
-module Base(Tamano=100, AjusteInterior=-1){
+module Base(Tamano=100, AjusteInterior=0){
         CuboHueco(Tamano,AjusteInterior);
 }
 
 module SacarInterior(Tamano,AjusteInterior){
-    AgujeroInterior=Tamano*85/100-AjusteInterior;
+    AgujeroInterior=Tamano*89/100-AjusteInterior;
+    // AgujeroInterior=Tamano-AjusteInterior;
         union(){
             // Sacar interior y sobrantes
-            translate([0,0,0.6*Tamano])
+            translate([0,0,0.5*Tamano+EspesorParedes])
                 cube([AgujeroInterior,AgujeroInterior,Tamano], center=true);
-            translate([0,0,(0.75)*Tamano])
+            translate([0,0,(0.77)*Tamano])
                 cube(Tamano*1.01, center=true);
 
 
@@ -42,7 +47,7 @@ module SacarInterior(Tamano,AjusteInterior){
 module Rejilla(Tamano=100){
 
     difference(){
-        translate([0,0,0.83*Tamano]) cube([0.83*Tamano-0.5,0.83*Tamano-0.5,2],center=true);
+        translate([0,0,0.83*Tamano]) cube([0.87*Tamano-0.5,0.86*Tamano-0.5, EspesorParedes],center=true);
         for (i=[0:NroDeRayos]){
             for (j=[0, 0.15, 0.22, 0.30]){
                 rotate([0,0,360*i/NroDeRayos]) 
@@ -62,12 +67,17 @@ module SacarCilindros(Tamano=100){
 module Maceta(Tamano=100){
     difference(){
         Cubo(Tamano);
-        translate([0,0,Tamano*.43])
-            cube([Tamano*.85-5,Tamano*.85-5,Tamano], center=true);
+   //     translate([0,0,Tamano*.3])
+            cube([Tamano*.88-2*EspesorParedes,Tamano*.88-2*EspesorParedes,Tamano], center=true);
         Base(Tamano,1);
-        translate([0,0,1.25*Tamano])
-            cube([Tamano*.85,Tamano*.85,Tamano*2], center=true);
+        translate([0,0,1.27*Tamano])
+            cube([Tamano*.9-EspesorParedes,Tamano*.9-EspesorParedes,Tamano*2], center=true);
+        // Quitar la mitad del encastre
+        translate([0,0,Tamano/20])
+            cube([Tamano,Tamano,Tamano/6], center=true);
     }
+
+
 
     //    translate([0,0,-80]) cube([
 }
