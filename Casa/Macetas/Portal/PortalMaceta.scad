@@ -74,17 +74,3 @@ module Maceta(Tamano=100){
     //    translate([0,0,-80]) cube([
 }
 
-//Base();
-//    CuboHueco();
-//SacarInterior();
-//
-//
-// color([0.8,0.2,0], alpha=0.7)
-//     Maceta(50);
-    // // 
-// color([0.8,1,0.9], alpha=0.7)
-//     Rejilla(50);
-
-//    color([0,0.8,0.9], alpha=0.9)
-//       Base(50);
-

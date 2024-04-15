@@ -1,8 +1,9 @@
 $fn=50;
 
-NroDeRayos=10;
+NroDeRayos=6;
 
 EspesorParedes = 2;
+
 
 module Cubo(Tamano=100){
 //    rotate([180,0,0])
@@ -12,8 +13,8 @@ module Cubo(Tamano=100){
         scale(Tamano/16)
         import("question_basic.stl", convexity=6);
         TamanoCubo = Tamano*0.91;
-        translate([0,0,TamanoCubo/2])
-        cube([TamanoCubo,TamanoCubo,TamanoCubo*0.9275], center=true);
+        translate([0,0,TamanoCubo/2.07])
+        cube([TamanoCubo,TamanoCubo,TamanoCubo*0.9625], center=true);
 }
 
 module CuboHueco(Tamano=100,AjusteInterior=0){
@@ -49,7 +50,8 @@ module Rejilla(Tamano=100){
     difference(){
         translate([0,0,0.83*Tamano]) cube([0.87*Tamano-0.5,0.86*Tamano-0.5, EspesorParedes],center=true);
         for (i=[0:NroDeRayos]){
-            for (j=[0, 0.15, 0.22, 0.30]){
+            //for (j=[0, 0.15, 0.22, 0.30]){ //}
+            for (j=[ 0.15, 0.3]){
                 rotate([0,0,360*i/NroDeRayos]) 
                     translate([Tamano*j,0,Tamano*.9]) 
                     cylinder(r=2, h=50,center=true);
@@ -81,28 +83,3 @@ module Maceta(Tamano=100){
 
     //    translate([0,0,-80]) cube([
 }
-
-
-// Modelo
-// translate([0,0,-5]) Base();
-//  Maceta();
-// 
-// translate([0,0,-50]) color ([0.8,0.2,0], alpha=0.7) Rejilla();
-
-
-// Partes
-
-// Cubo();
-//    CuboHueco();
-//SacarInterior();
-//
-//
-// color([0.8,0.2,0], alpha=0.7)
-//     Maceta(50);
-    // // 
-// color([0.8,1,0.9], alpha=0.7)
-//     Rejilla(50);
-
-//    color([0,0.8,0.9], alpha=0.9)
-//       Base(50);
-
