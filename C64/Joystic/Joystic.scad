@@ -7,12 +7,12 @@ Ancho  = 100;
 Largo  = 110; 
 Altura =  40; 
 
-RSujetadores = 6;
-Rtornillo = 2;
+RSujetadores = 7;
+Rtornillo = 3;
 
 
 module AgujeroBoton(){
-    cylinder(h=2*espesor, r=12);
+    cylinder(h=2*espesor, r=13);
 }
 
 
@@ -43,12 +43,19 @@ module MuecaTuerca(){
 module InteriorTapa(){
     translate([0,0,-espesor]){
         difference(){
-            roundedcube_simple([100-espesor,110-espesor,40],radius=8, center=true);
+            roundedcube_simple([Ancho-espesor,Largo-espesor,Altura],radius=8, center=true);
             for (x = [-Ancho/2+espesor+RSujetadores, Ancho/2-espesor-RSujetadores]){
                 for (y = [-Largo/2+espesor+RSujetadores, Largo/2-espesor-RSujetadores]){
 
-                    translate([x,y,0]) cylinder(r=RSujetadores, h= Altura, center=true);
-                    translate([x*1.03,y*1.03,0]) cylinder(r=RSujetadores, h= Altura, center=true);
+                    m_Angle = 20;
+
+                    if ( x > 0 && y > 0 ) {}
+
+                    Anglex = - y/ abs(y) * m_Angle ;
+                    Angley =  x/ abs(x) * m_Angle ;
+
+                    translate([x+Altura/4*sin(Angley),y-Altura/4*sin(Anglex),0])           rotate([Anglex, Angley ,0]) cylinder(r=RSujetadores, h= Altura, center=true);
+                    //translate([x*1.03,y*1.03,0]) rotate([Anglex, Angley ,0]) cylinder(r=RSujetadores, h= Altura, center=true);
 
 
                 }
@@ -101,6 +108,88 @@ module Tapa(){
 }
 
 
+module InteriorBase(){
+    translate([0,0,-Altura/4-espesor]){
+            roundedcube_simple([Ancho-3*espesor,Largo-3*espesor,Altura],radius=8, center=true);
+    }
+}
 
+module SacabocadosBase(){
+    translate([0,0,-Altura/2])
+    difference(){
+        cube([Ancho*1.1, Largo*1.1, Altura],center=true);
+        translate([0,0,Altura/2]) roundedcube_simple([Ancho-espesor-1, Largo-espesor-1, Altura],center=true, radius=8);
+    }
+}
+
+module PatasSoporte(){
+    for (x = [-Ancho/2+espesor+RSujetadores, Ancho/2-espesor-RSujetadores]){
+        for (y = [-Largo/2+espesor+RSujetadores, Largo/2-espesor-RSujetadores]){
+
+            translate([x,y,Altura/8]) {
+            cylinder(r=RSujetadores, h= Altura/4, center=true);
+            //     difference(){
+            //         cylinder(r=Rtornillo, h= Altura/3, center=true);
+            //     }
+             }
+
+
+        }
+
+    }
+
+}
+
+
+module BaseSolida() {
+    difference(){
+        roundedcube_simple([Ancho, Largo, Altura/2],radius=8, center=true);
+        SacabocadosBase();
+//         translate([0,0,-Altura/4+1-2]) cube([Ancho*1.1, Largo*1.1,10], center=true);
+//         translate([0,0,-Altura/4-2]) rotate([180,0,0]) scale(1.03) Tapa();
+//         translate([0,0,-Altura/4-2]) rotate([180,0,0]) Tapa();
+        
+        InteriorBase();
+        translate([0,0,-Altura/4]) scale(1.02) PatasSoporte();
+    }
+
+    PatasSoporte();
+    // for (x = [-Ancho/2+espesor+RSujetadores, Ancho/2-espesor-RSujetadores]){
+    //     for (y = [-Largo/2+espesor+RSujetadores, Largo/2-espesor-RSujetadores]){
+
+    //         translate([x,y,Altura/8]) {
+    //             difference(){
+    //                 cylinder(r=RSujetadores, h= Altura/4, center=true);
+    //                 cylinder(r=Rtornillo, h= Altura/3, center=true);
+    //             }
+    //         }
+
+
+    //     }
+
+    // }
     
+
+}
     
+   
+module Base(){
+    difference(){
+        BaseSolida();
+     for (x = [-Ancho/2+espesor+RSujetadores, Ancho/2-espesor-RSujetadores]){
+         for (y = [-Largo/2+espesor+RSujetadores, Largo/2-espesor-RSujetadores]){
+
+             translate([x,y,Altura/8]) {
+                     cylinder(r=Rtornillo, h= Altura/3, center=true);
+                     translate([0,0,Altura/16+1])
+                     cylinder(r=RSujetadores-1, h= Altura/8, center=true);
+                     translate([0,0,Altura/16-2])
+                     cylinder(r2=RSujetadores-1, r1=Rtornillo, h= Altura/16, center=true);
+             }
+
+
+         }
+
+     }
+    }
+}
