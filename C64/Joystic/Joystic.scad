@@ -104,6 +104,10 @@ module Tapa(){
         // Agujero Boton
         translate([-30,Largo/4,Altura/2 - 2*espesor]) AgujeroBoton();
 
+        // Agujero Cable
+        translate([0, Largo/2, 0]) rotate([90,0,0]) cylinder(r=4, h= 4*espesor, center=true);
+        translate([0, Largo/2, -Altura/2])  cube([8, 4*espesor, Altura], center=true);
+
     }
 }
 
@@ -122,12 +126,12 @@ module SacabocadosBase(){
     }
 }
 
-module PatasSoporte(){
+module PatasSoporte(Margen=0){
     for (x = [-Ancho/2+espesor+RSujetadores, Ancho/2-espesor-RSujetadores]){
         for (y = [-Largo/2+espesor+RSujetadores, Largo/2-espesor-RSujetadores]){
 
             translate([x,y,Altura/8]) {
-            cylinder(r=RSujetadores, h= Altura/4, center=true);
+            cylinder(r=RSujetadores+Margen, h= Altura/4, center=true);
             //     difference(){
             //         cylinder(r=Rtornillo, h= Altura/3, center=true);
             //     }
@@ -150,7 +154,7 @@ module BaseSolida() {
 //         translate([0,0,-Altura/4-2]) rotate([180,0,0]) Tapa();
         
         InteriorBase();
-        translate([0,0,-Altura/4]) scale(1.02) PatasSoporte();
+        translate([0,0,-Altura/4]) PatasSoporte(1);
     }
 
     PatasSoporte();

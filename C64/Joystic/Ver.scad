@@ -1,6 +1,7 @@
 include <Joystic.scad>
 
 Base();
+//Tapa();
 
 //color(blue, alpha=0.3) translate([0,0,-Altura/4-5]) rotate([180,0,0]) Tapa();
 //
