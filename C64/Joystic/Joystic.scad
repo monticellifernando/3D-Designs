@@ -1,5 +1,17 @@
-$fn=50;
+$fn=40;
 use <roundedcube_simple.scad>
+
+module Logo(){
+    translate([-Ancho/2+7,8,Altura/2-1.0]){
+
+        //import("Logo/C64_READY.stl", convexity=100);
+        import("Logo/C64.stl", convexity=100);
+        import("Logo/READY.stl", convexity=11);
+        //import("Logo/R.stl", convexity=100);
+        //import("Logo/E.stl", convexity=100);
+    }
+}
+
 
 espesor=2;
 
@@ -87,6 +99,9 @@ module Tapa(){
         
         // Hueco
         InteriorTapa();
+
+        //Logo
+        Logo();
         
         // Muecas para tuercas
         for ( x = [90,-90]){
