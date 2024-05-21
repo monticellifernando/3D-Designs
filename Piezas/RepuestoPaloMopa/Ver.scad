@@ -3,8 +3,8 @@ include <RepuestoPaloMopa.scad>
 //Logo();
 
 //Base();
-Tubo();
-
+//Tubo();
+Fin();
 //color(blue, alpha=0.3) translate([0,0,-Altura/4-5]) rotate([180,0,0]) Tapa();
 //
 // SacabocadosBase();
