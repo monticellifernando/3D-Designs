@@ -1,3 +1,4 @@
+Fer
 Caro
 #Pablo
 #Camilo
@@ -13,10 +14,10 @@ Vir
 #
 Flor<3
 #
-#Marian
-#Julian
-#Loquillo
-#Santi
+Marian
+Julian
+Loquillo
+Santi
 #
 Mati
 Cami
@@ -30,4 +31,4 @@ Val
 #Claudio
 Daniela
 #Oli
-Blade
+Bladi
