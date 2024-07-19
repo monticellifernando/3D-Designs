@@ -35,7 +35,7 @@ module MarcaVasos(Texto="Test", Escala=0.75){
         union(){
             Cassette(Escala);
 
-            translate([Escala*2, Escala*-11,Escala*5])
+            translate([Escala*2, Escala*-11,Escala*5-0.2])
                 linear_extrude(height = 1.5) {
                     scale([Escala*0.75,Escala*0.75,Escala*1])
                         text(Texto, font = ":Bold");

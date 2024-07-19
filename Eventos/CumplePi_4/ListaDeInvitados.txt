@@ -13,6 +13,8 @@ Papá
 Vir
 #
 Flor<3
+Ine
+Manu
 #
 Marian
 Julian
@@ -22,8 +24,8 @@ Santi
 Mati
 Cami
 #
-#Fili
-#Isi
+Fili
+Isi
 #Pato
 #
 Val
@@ -31,4 +33,4 @@ Val
 #Claudio
 Daniela
 #Oli
-Bladi
+Vladi
