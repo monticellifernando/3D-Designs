@@ -1,11 +1,11 @@
 $fn=64;
 
-r1 = 1.5;
+r1 = 1.75;
 a = 1;
 b = 0.75;
 r2 = a/2;
 
-DIntToroide = 24;
+DIntToroide = 24.5;
 
 
 module ToroidePrincipal(){
