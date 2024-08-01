@@ -1,0 +1,3 @@
+include <TopeSecaPlatos.scad>
+
+TopeSecaPlatos();

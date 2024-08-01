@@ -1,0 +1,3 @@
+include <Tarugo.scad>
+
+Tarugo();

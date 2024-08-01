@@ -1,0 +1,3 @@
+include <Template.scad>
+
+Template();
