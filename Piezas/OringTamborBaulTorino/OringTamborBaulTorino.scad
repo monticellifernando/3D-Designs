@@ -21,14 +21,23 @@ module Labio(){
     translate([0,0,-r1/2-0.75])
     difference(){
 
-        rotate_extrude(convexity = 10, $fn=64)
-            translate([DIntToroide/2-r1, 0, 0])
-            square([r1,r1]);
+        union(){
+            rotate_extrude(convexity = 10, $fn=64)
+                translate([DIntToroide/2-r1, 0, 0])
+                square([r1,r1]);
+
+            for ( i = [-1,1]){
+                width= 0.8;
+                translate([0,i*(DIntToroide/2-r1-width/2),-0.7-(-r1/2-0.75)])
+                    cube([8,width,1.8],center=true);
+            }
+        }
 
          rotate_extrude(convexity = 10, $fn=64)
              translate([DIntToroide/2+0.5, 0, 0])
              circle(r = r1);
     }
+
 }
 
 module Base(){
@@ -53,7 +62,7 @@ module Asiento(){
 
 
 
-module Aro(Tamano=100){
+module Oring(){
 
     difference(){
         ToroidePrincipal();
@@ -62,6 +71,19 @@ module Aro(Tamano=100){
     }
         Labio();
 }
+
+
+module Aro(){
+    difference(){
+
+        Oring();
+        translate([-DIntToroide/2+r1+0.25,0,0])
+            cube([1,3.5,15],center=true);
+    }
+
+
+}
+
 
 
 Aro();
