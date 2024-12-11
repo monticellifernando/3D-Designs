@@ -1,0 +1,3 @@
+include <BaseLampara.scad>
+
+Base();
