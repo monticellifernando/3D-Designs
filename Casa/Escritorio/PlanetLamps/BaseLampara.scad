@@ -21,18 +21,18 @@ module BaseSolida(){
 
 }
 
-module Base(Texto="Nombre"){
+module Base(Texto="Nombre",D_A=DiametroArriba){
 
     difference(){
         BaseSolida();
         translate([0,0,-Espesor+AlturaAgarre/2])
-            cylinder(h=AlturaAgarre+Altura, r=DiametroArriba/2- Espesor/2, center=true);
+            cylinder(h=AlturaAgarre+Altura, r=D_A/2- Espesor/2, center=true);
         translate([0,0,-2*Espesor ])
             cylinder(h=Altura, r=DiametroAbajo/2- Espesor/2, center=true);
         
         for (i = [0, 120, 240]){
             rotate([0,0,i])
-                translate([0,DiametroArriba*0.6 /2 ,(Altura+AlturaAgarre)/2-0.1])
+                translate([0,D_A*0.6 /2 ,(Altura+AlturaAgarre)/2-0.1])
                 cylinder(h=2*AlturaAgarre, r=2,center=true);
 
 
