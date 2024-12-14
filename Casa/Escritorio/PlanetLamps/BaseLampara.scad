@@ -13,11 +13,11 @@ DiametroAgarre = 2.5;
 SeparacionAgarres = 9; 
 DistanciaAlBorde = 10;
 
-module BaseSolida(){
+module BaseSolida(D_A = DiametroArriba){
 
         cylinder(h=Altura, r=DiametroAbajo/2+Espesor/2, center=true);
         translate([0,0,(Altura+AlturaAgarre)/2-0.1])
-            cylinder(h=AlturaAgarre, r=DiametroArriba/2, center=true);
+            cylinder(h=AlturaAgarre, r=D_A/2, center=true);
 
 }
 
@@ -27,8 +27,8 @@ module Base(Texto="Nombre",D_A=DiametroArriba){
         BaseSolida();
         translate([0,0,-Espesor+AlturaAgarre/2])
             cylinder(h=AlturaAgarre+Altura, r=D_A/2- Espesor/2, center=true);
-        translate([0,0,-2*Espesor ])
-            cylinder(h=Altura, r=DiametroAbajo/2- Espesor/2, center=true);
+        // translate([0,0,-2*Espesor ])
+        //     cylinder(h=Altura, r=DiametroAbajo/2- Espesor/2, center=true);
         
         for (i = [0, 120, 240]){
             rotate([0,0,i])
