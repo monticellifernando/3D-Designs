@@ -27,8 +27,8 @@ module Base(Texto="Nombre"){
         BaseSolida();
         translate([0,0,-Espesor+AlturaAgarre/2])
             cylinder(h=AlturaAgarre+Altura, r=DiametroArriba/2- Espesor/2, center=true);
-        translate([0,0,-2*Espesor ])
-            cylinder(h=Altura, r=DiametroAbajo/2- Espesor/2, center=true);
+        // translate([0,0,-2*Espesor ])
+        //     cylinder(h=Altura, r=DiametroAbajo/2- Espesor/2, center=true);
         
         for (i = [0, 120, 240]){
             rotate([0,0,i])
