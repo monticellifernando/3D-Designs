@@ -1,3 +1,6 @@
 *blend1
 # Macos shit
 .DS_Store
+
+# vim shit
+.*.sw?
