@@ -13,6 +13,11 @@ DiametroAgarre = 2.5;
 SeparacionAgarres = 9; 
 DistanciaAlBorde = 10;
 
+module Pie(){
+
+        cylinder(h=2, r=DiametroAbajo/2+Espesor/2, center=true);
+
+}
 module BaseSolida(D_A = DiametroArriba){
 
         cylinder(h=Altura, r=DiametroAbajo/2+Espesor/2, center=true);
