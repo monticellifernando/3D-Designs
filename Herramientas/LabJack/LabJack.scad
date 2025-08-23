@@ -16,7 +16,7 @@ BaseDepth=2;
 Depth=7.5;
 Height=15;
 HoleRadious=4;
-HoleRadiousMargin=0.2;
+HoleRadiousMargin=0.3;
 SmallHoleRadious=2.1;
 //Separation=70;
 Separation=Size-2*Depth;
@@ -214,7 +214,7 @@ module SidesMiddleHole(){
 
 module SidesMiddlePlug(){
 
-        Sides(Depth);
+        Sides();
             difference(){
                 translate([0,0,Depth-0.1])
                     cylinder(h=Depth, r=HoleRadious-HoleRadiousMargin,center=true);
