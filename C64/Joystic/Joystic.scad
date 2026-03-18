@@ -1,5 +1,20 @@
 $fn=40;
 use <roundedcube_simple.scad>
+// module roundcube_simple(size, radius, center=false) {
+//     x = size[0];
+//     y = size[1];
+//     z = size[2];
+//     r = radius;
+//     
+//     minkowski(64){
+//         cube(size,center);
+//         sphere(r=radius);
+//     }
+// 
+//     
+// }
+
+
 
 module Logo(){
     translate([-Ancho/2+7,8,Altura/2-1.0]){
