@@ -1,13 +1,24 @@
 $fn = 64;
 
-Diam = 16;
-Ancho = 30;
-Profundidad = 19;
-Largo = 70;
+Diam = 40;
 
-
+Ancho = 40;
+Profundidad = 100;
+Largo = 80;
 
 difference(){
-    cube([Ancho, Profundidad, Largo+1], center = true); 
-        translate([0,0,-Largo/2+4]) rotate([90,0,0]) cylinder(d = Diam, h = 2*Largo, center = true); 
+    rotate([0,-60,0]) 
+        difference(){
+            cylinder(d=Diam, h=2*Diam, center = true);
+            cylinder(d=2, h=2*Largo, center = true);
+        }
+//difference(){
+//    rotate([0,-60,0]) 
+//        difference(){
+//            cylinder(d=25, h=30, center = true);
+//            cylinder(d=25, h=30, center = true);
+//        }
+    translate([-Ancho,0,0]) cube([Ancho+1, Profundidad+1, Largo+1], center = true);
+
+
 }
